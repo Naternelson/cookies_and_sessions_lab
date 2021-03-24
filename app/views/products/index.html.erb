@@ -1,0 +1,22 @@
+<% if current_cart.empty? %>
+    <h1>Empty Cart</h1>
+    <p>Go ahead and use the form below to add whatever you want to your cart</p>
+<% else %>
+    <h1>Your Cart: <%= pluralize(current_cart.count, "Item") %> </h1>
+<% end %>
+<br>
+<%= form_tag '/', method: :post do %>
+    <%= text_field_tag :product %>
+    <%= submit_tag "add to cart"%>
+<% end %>
+<br>
+<table>
+    <tr>
+        <th>Item</th>
+    </tr>
+    <% current_cart.each do |item|%>
+        <tr>
+            <td><%= item %></th>
+        </tr>
+    <% end %>
+</table>
